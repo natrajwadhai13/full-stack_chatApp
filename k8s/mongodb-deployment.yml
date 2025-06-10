@@ -23,13 +23,6 @@ spec:
               value: mongoadmin
             - name: MONGO_INITDB_ROOT_PASSWORD
               value: mongoadmin
-          resources:
-            requests:
-              memory: "256Mi"
-              cpu: "250m"
-            limits:
-              memory: "512Mi"
-              cpu: "500m"   
       volumes:
         - name: mongodb-storage
           persistentVolumeClaim:
