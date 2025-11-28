@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: frontend-deployment
   namespace: chat-app
+  labels:
+    app: frontend
 spec:
   replicas: 1
   selector:
@@ -10,20 +12,19 @@ spec:
       app: frontend
   template:
     metadata:
-      name: frontend-pod
-      namespace: chat-app
-      labels: 
+      labels:
         app: frontend
     spec:
       containers:
-      - name: chatapp-frontend
-        image: trainwithshubham/chatapp-frontend
-        ports:
-        - containerPort: 80
-        env:
-        - name: NODE_ENV
-          value: production
-          
-
-
-
+        - name: frontend
+          image: imperialx21/chatapp_frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"
